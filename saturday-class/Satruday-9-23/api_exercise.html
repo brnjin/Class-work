@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang=“en”>
+
+<head>
+  <meta charset=“utf-8">
+  <title>Giphy API</title>
+</head>
+
+<body>
+    <input id =“textToSearch” type=“text” placeholder=“Search”>
+    <button id=“search”>Search</button>
+    <div id=“giphy”></div>
+  <script src=“https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js“></script>
+  <script type=“text/javascript”>
+    // Example queryURL for Giphy API
+    
+
+   $(‘#search’).on(‘click’, function() {
+        var input = $(“#textToSearch”).val();
+        var queryURL = “https://api.giphy.com//v1/gifs/search?api_key=dc6zaTOxFJmzC&q=” + input;
+        console.log(input);
+  
+    
+   $.ajax({
+      url: queryURL,
+      method: ‘GET’
+    }).done(function(response) {
+        result =  (response.url);
+      $(“#giphy”).html(“<img src=“+response.data[3].images.fixed_height_still.url+“>”);
+    });
+
+    })
+  </script>
+
+</body>
+
+</html>
